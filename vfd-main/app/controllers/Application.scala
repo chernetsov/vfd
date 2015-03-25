@@ -24,5 +24,9 @@ object Application extends Controller {
   def mavlink = WebSocket.acceptWithActor[Array[Byte], Array[Byte]] { implicit request =>
     out => plugin.register(out)
   }
+  
+  def regions = Action {implicit request =>
+    Ok(views.html.regions())
+  }
 
 }
