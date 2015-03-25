@@ -12,48 +12,323 @@
 	<link rel="shortcut icon" href="@routes.Assets.at("images/logo.svg")">
 	<link rel="stylesheet" media="screen" href="@routes.Assets.at("lib/bootstrap/css/bootstrap.min.css")">
 	<link rel="stylesheet" media="screen" href="@routes.Assets.at("lib/font-awesome/css/font-awesome.min.css")">
-	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/regions.css")">
+<style>
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: #e6e6e6;
+}
+
+
+.rows {
+	height: 100%;
+	
+	display: flex;
+	flex-direction: column;
+	align-content: flex-start;
+	align-items: stretch;
+}
+
+#layout {
+	height: 100%;
+	order: 1;
+	
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-content: flex-start;
+	align-items: stretch;
+}
+
+
+#layout > * {
+	padding: 5px;
+}
+
+#above {
+	padding: 5px;
+}
+
+#details {
+	display: none;
+	
+	flex-direction: column;
+	align-content: flex-start;
+	align-items: stretch;
+}
+
+#left {
+	order: 1;
+	flex: 1 1 35%;
+	
+	display: flex;
+	flex-direction: column;
+	align-content: flex-start;
+	align-items: stretch;
+	
+}
+
+#center {
+	order: 2;
+	flex: 1 1 40%;
+	
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-content: flex-start;
+	align-items: stretch;
+}
+
+#main {
+	
+}
+
+#below {
+	flex: 1 1 60%;
+	
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-content: flex-start;
+	align-items: stretch;
+}
+
+#right {
+	order: 3;
+	flex: 1 1 25%;
+	
+	display: flex;
+	flex-direction: column;
+	align-content: flex-start;
+	align-items: stretch;
+}
+
+#layout.detailed > #details {
+	display: flex;
+	flex: 1 1 75%;
+}
+#layout.detailed > #left {
+	display: none;
+}
+#layout.detailed > #center {
+	display: none;
+}
+#layout.detailed #main {
+	
+}
+#layout.detailed #below {
+	display: none;
+}
+
+.panel-fill {
+	flex: 1 1 100%;
+	margin-bottom: 5px;
+	max-width: 100%;
+}
+
+.mode {
+  display: inline-block;
+  box-sizing: border-box;
+  margin-right: 10px;
+  border: none;
+  /*font: normal 18px/normal "Warnes", Helvetica, sans-serif;*/
+  text-decoration: normal;
+  text-align: center;
+  text-overflow: clip;
+  white-space: pre;
+  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.mode.danger {
+    color: #d9534f;
+    text-shadow: 0 0 5px #d9534f;
+}
+.mode.warning {
+    color: #f0ad4e;
+    text-shadow: 0 0 5px #f0ad4e;
+}
+.mode.blue {
+    color: #5bc0de;
+    text-shadow: 0 0 5px #5bc0de;
+}
+.mode.green {
+    color: #5cb85c;
+    text-shadow: 0 0 5px #5cb85c;
+}
+.mode.off {
+    color: #eeeeee;
+    text-shadow: none;
+}
+
+</style>
 </head>
 <body>
 
-	
-	<div class="fbox">
-		<header>
-			<div class="panel panel-default">
-				<div class="panel-body">
-					Status
-				</div>
-			</div>
-		</header>
-		<nav>
-			<div class="panel panel-default" style="height: 100%">
-				<div class="panel-body">
-					Nav
-				</div>
-			</div>
-		</nav>
-		<main>
-			<div class="panel panel-default" style="height: 100%">
-				<div class="panel-body">
-					Nav
-				</div>
-			</div>
-		</main>
-		<aside>
-			<div class="panel panel-default" style="height: 100%">
-				<div class="panel-body">
-					Nav
-				</div>
-			</div>
-		</aside>
-	</div>
-	
-	
-	
 
 
 	<script type="text/javascript" src="@routes.Assets.at("lib/jquery/jquery.js")"></script>
 	<script type="text/javascript" src="@routes.Assets.at("lib/bootstrap/js/bootstrap.min.js")"></script>
+	
+	<div class="rows">
+		<div id="above">
+			<div class="panel panel-default panel-fill" style="display: inline-block">
+				<div class="panel-body">
+					<div class="mode warning">MANUAL</div>
+					<div class="mode off">STABILIZED</div>
+					<div class="mode off">GUIDED</div>
+					<div class="mode off">AUTO</div>
+				</div>
+				
+			</div>
+			<div class="panel panel-default panel-fill" style="display: inline-block;">
+				<div class="panel-body">
+					<div class="mode blue">BAY</div>
+					<div class="mode off">NOFIX</div>
+					<div class="mode off">OVERLOAD</div>
+					<div class="mode off">RECOVERY</div>
+					<div class="mode danger">BATT</div>
+					<div class="mode off">LINK</div>
+					<div class="mode off">SOCKET</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="layout">
+			<div id="left">
+				<div class="panel panel-default panel-fill">
+					<div class="panel-body">
+						<button class="reveal">Settings</button>
+					</div>
+				</div>
+			</div>
+			<div id="center">
+				<div id="main">
+					<div class="panel panel-default panel-fill">
+						<div class="panel-body">
+							<div style="background-color: blue; height: 300px;">
+								video
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="below">
+					<div class="panel panel-default panel-fill">
+						<div class="panel-body">
+							Below
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="right">
+				<div class="panel panel-default panel-fill">
+					<div class="panel-body">
+						Right
+					</div>
+				</div>
+			</div>
+			<div id="details">
+				<div class="panel panel-default panel-fill"  style="overflow-y: scroll;">
+					<div class="panel-body">
+						<button class="dismiss">Dismiss</button>
+						<p>very long text with lots of widtgets</p>
+						<button class="btn btn-default">Foo</button>
+						<button class="btn btn-default">Bar</button>
+						<button class="btn btn-default">Buz</button>
+						<button class="btn btn-default">Foo</button>
+						<p>blablablaklskjad lkdj lkajslkdjalksdyaskjsaudiolueyu lusak foiayuskyfds a </p>
+						<p>very long text with lots of widtgets</p>
+						<button class="btn btn-default">Foo</button>
+						<button class="btn btn-default">Bar</button>
+						<button class="btn btn-default">Buz</button>
+						<button class="btn btn-default">Foo</button>
+						<p>blablablaklskjad lkdj lkajslkdjalksdyaskjsaudiolueyu lusak foiayuskyfds a </p>
+						<p>very long text with lots of widtgets</p>
+						<button class="btn btn-default">Foo</button>
+						<button class="btn btn-default">Bar</button>
+						<button class="btn btn-default">Buz</button>
+						<button class="btn btn-default">Foo</button>
+						<p>blablablaklskjad lkdj lkajslkdjalksdyaskjsaudiolueyu lusak foiayuskyfds a </p>
+						<p>very long text with lots of widtgets</p>
+						<button class="btn btn-default">Foo</button>
+						<button class="btn btn-default">Bar</button>
+						<button class="btn btn-default">Buz</button>
+						<button class="btn btn-default">Foo</button>
+						<p>blablablaklskjad lkdj lkajslkdjalksdyaskjsaudiolueyu lusak foiayuskyfds a </p>
+						<p>very long text with lots of widtgets</p>
+						<button class="btn btn-default">Foo</button>
+						<button class="btn btn-default">Bar</button>
+						<button class="btn btn-default">Buz</button>
+						<button class="btn btn-default">Foo</button>
+						<p>blablablaklskjad lkdj lkajslkdjalksdyaskjsaudiolueyu lusak foiayuskyfds a </p>
+						<p>very long text with lots of widtgets</p>
+						<button class="btn btn-default">Foo</button>
+						<button class="btn btn-default">Bar</button>
+						<button class="btn btn-default">Buz</button>
+						<button class="btn btn-default">Foo</button>
+						<p>blablablaklskjad lkdj lkajslkdjalksdyaskjsaudiolueyu lusak foiayuskyfds a </p>
+						<p>very long text with lots of widtgets</p>
+						<button class="btn btn-default">Foo</button>
+						<button class="btn btn-default">Bar</button>
+						<button class="btn btn-default">Buz</button>
+						<button class="btn btn-default">Foo</button>
+						<p>blablablaklskjad lkdj lkajslkdjalksdyaskjsaudiolueyu lusak foiayuskyfds a </p>
+						<p>very long text with lots of widtgets</p>
+						<button class="btn btn-default">Foo</button>
+						<button class="btn btn-default">Bar</button>
+						<button class="btn btn-default">Buz</button>
+						<button class="btn btn-default">Foo</button>
+						<p>blablablaklskjad lkdj lkajslkdjalksdyaskjsaudiolueyu lusak foiayuskyfds a </p>
+						<p>very long text with lots of widtgets</p>
+						<button class="btn btn-default">Foo</button>
+						<button class="btn btn-default">Bar</button>
+						<button class="btn btn-default">Buz</button>
+						<button class="btn btn-default">Foo</button>
+						<p>blablablaklskjad lkdj lkajslkdjalksdyaskjsaudiolueyu lusak foiayuskyfds a </p>
+						<p>very long text with lots of widtgets</p>
+						<button class="btn btn-default">Foo</button>
+						<button class="btn btn-default">Bar</button>
+						<button class="btn btn-default">Buz</button>
+						<button class="btn btn-default">Foo</button>
+						<p>blablablaklskjad lkdj lkajslkdjalksdyaskjsaudiolueyu lusak foiayuskyfds a </p>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<script>
+	$(function() {
+		
+		$("button.reveal").click(function (btn){
+			$("#layout").toggleClass("detailed")
+			var element = $("#main").detach();
+			$("#right").prepend(element);
+			
+		});
+		$("button.dismiss").click(function (btn){
+			$("#layout").removeClass("detailed")
+			var element = $("#main").detach();
+			$("#center").prepend(element);
+		});
+	});
+	</script>
+	
+	
+	
+	
+	<!-- <div class="panel panel-default" style="height: 100%">
+				<div class="panel-body">
+					Nav
+				</div>
+			</div> -->
+	
+	
 	
 </body>
 </html>
